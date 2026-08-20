@@ -1,0 +1,26 @@
+---
+
+import Nav from "@/components/Nav.astro";
+import Button from "@/components/Button.astro";
+
+import logo from "@/assets/HWG_logo.png";
+import GitHub from "@assets/github/GitHub_Invertocat_White.svg"
+---
+<header class="site-header">
+    <div class="site-header-inner">
+        <a href="/" class="header-logo" aria-label="Jake Pigg home">
+            <img src={logo.src} alt="HWG logo" class="header-logo-image"/>
+            <span class="header-logo-text">Jake Pigg</span>
+        </a>
+
+        <Nav />
+
+        <div class="header-actions" aria-label="Profile links">
+            <Button href="https://github.com/jakenbake97" variant="icon">
+                <img src={GitHub.src} alt=""/>
+                Github
+            </Button>
+            <Button href="#" variant="accent">Resume</Button>
+        </div>
+    </div>
+</header>

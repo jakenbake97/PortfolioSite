@@ -1,0 +1,14 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+
+interface Props extends HTMLAttributes<"a"> {
+    href: string;
+    variant?: 'primary' | 'secondary' | 'accent' | 'icon' | 'icon-only';
+}
+
+const {href, variant = "primary", ...attrs} = Astro.props;
+---
+
+<a href={href} class:list={["button", variant]} {...attrs}>
+    <slot />
+</a>

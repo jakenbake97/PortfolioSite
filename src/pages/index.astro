@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Button from "@/components/Button.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import GitHub from "@assets/github/GitHub_Invertocat_White.svg"
 ---
 
 <Layout>
@@ -13,5 +13,36 @@ import Layout from '../layouts/Layout.astro';
 			<li>One</li>
 			<li>Two</li>
 		</ul>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dolores facere perferendis praesentium
+			quod repellendus tempora, vel veritatis! Accusantium autem facere hic, iusto magnam provident repellendus
+			sequi soluta suscipit vero.</p>
+		<p>Accusamus accusantium distinctio ipsa reiciendis tempora ut? Architecto dolorem eligendi et, eum id tempore.
+			Animi, delectus deserunt earum est fugiat inventore ipsam iusto nemo nisi officia officiis, praesentium
+			tenetur ut.</p>
+		<p>Ad amet officia rem! Adipisci amet animi blanditiis deleniti eum explicabo facilis, ipsam ipsum iure labore
+			minima minus molestiae, neque nostrum nulla, officiis perferendis quis quod rerum similique velit
+			voluptatem.</p>
+		<p>Ad architecto deserunt esse excepturi illo nobis nulla optio provident repudiandae sunt tempore, vero. Alias,
+			aut debitis deserunt eius est, hic labore natus nisi, perferendis recusandae rerum soluta tenetur
+			voluptatibus!</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dolores facere perferendis praesentium
+			quod repellendus tempora, vel veritatis! Accusantium autem facere hic, iusto magnam provident repellendus
+			sequi soluta suscipit vero.</p>
+		<p>Accusamus accusantium distinctio ipsa reiciendis tempora ut? Architecto dolorem eligendi et, eum id tempore.
+			Animi, delectus deserunt earum est fugiat inventore ipsam iusto nemo nisi officia officiis, praesentium
+			tenetur ut.</p>
+		<p>Ad amet officia rem! Adipisci amet animi blanditiis deleniti eum explicabo facilis, ipsam ipsum iure labore
+			minima minus molestiae, neque nostrum nulla, officiis perferendis quis quod rerum similique velit
+			voluptatem.</p>
+		<p>Ad architecto deserunt esse excepturi illo nobis nulla optio provident repudiandae sunt tempore, vero. Alias,
+			aut debitis deserunt eius est, hic labore natus nisi, perferendis recusandae rerum soluta tenetur
+			voluptatibus!</p>
+	</section>
+	<section>
+		<Button href="/" variant="primary">Primary button</Button>
+		<Button href="/" variant="secondary">Secondary button</Button>
+		<Button href="/" variant="accent">Accent button</Button>
+		<Button href="/" variant="icon" target="_blank" rel="noopener noreferrer"><img src={GitHub.src} alt="">Icon Button</Button>
+		<Button href="/" variant="icon-only" target="_blank" rel="noopener noreferrer"><img src={GitHub.src} alt=""></Button>
 	</section>
 </Layout>

@@ -1,9 +1,9 @@
 ---
 import {baseData} from "@/data/SiteData.ts"
-import Nav from "@/layouts/Nav.astro";
 import Footer from "@/layouts/Footer.astro";
 
 import "@/styles/global.css";
+import Header from "@/layouts/Header.astro";
 
 const {title = baseData.title, description = baseData.description} = Astro.props;
 ---
@@ -13,8 +13,11 @@ const {title = baseData.title, description = baseData.description} = Astro.props
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
@@ -23,8 +26,8 @@ const {title = baseData.title, description = baseData.description} = Astro.props
 		<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,600&family=JetBrains+Mono&display=swap" rel="stylesheet">
 	</head>
 	<body>
-	<Nav />
-	<main>
+	<Header />
+	<main class="container">
 		<slot />
 	</main>
 	<Footer />
