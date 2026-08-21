@@ -1,0 +1,15 @@
+---
+import Image from "astro/components/Image.astro";
+
+import Profile from "@assets/Portrait_Placeholder.png";
+import Background from "@assets/code.jpg";
+---
+<section class="hero section">
+    <Image class="hero-background" src={Background} alt="" />
+    <div class="hero-content">
+        <p class="hero-eyebrow">Eyebrow text goes here</p>
+        <Image class="hero-image" src={Profile} alt="Profile picture" />
+        <h1 class="hero-title">Hi, I'm Jake</h1>
+        <p class="hero-description">Description. This is where I say the things I can do</p>
+    </div>
+</section>

@@ -3,9 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import Button from "@/components/Button.astro";
 
 import GitHub from "@assets/github/GitHub_Invertocat_White.svg"
+import Hero from "@/components/Hero.astro";
 ---
 
 <Layout>
+	<Hero />
 	<section class="section">
 		<h1>Hello</h1>
 		<p>This is some text.</p>
@@ -38,11 +40,19 @@ import GitHub from "@assets/github/GitHub_Invertocat_White.svg"
 			aut debitis deserunt eius est, hic labore natus nisi, perferendis recusandae rerum soluta tenetur
 			voluptatibus!</p>
 	</section>
-	<section>
+	<section class="section">
 		<Button href="/" variant="primary">Primary button</Button>
 		<Button href="/" variant="secondary">Secondary button</Button>
 		<Button href="/" variant="accent">Accent button</Button>
-		<Button href="/" variant="icon" target="_blank" rel="noopener noreferrer"><img src={GitHub.src} alt="">Icon Button</Button>
-		<Button href="/" variant="icon-only" target="_blank" rel="noopener noreferrer"><img src={GitHub.src} alt=""></Button>
+		<Button href="/" variant="icon" target="_blank" rel="noopener noreferrer"><GitHub/>Icon Button</Button>
+		<Button href="/" variant="icon-only" target="_blank" rel="noopener noreferrer" aria-label="GitHub link"><GitHub/></Button>
+	</section>
+	<section class="section">
+		<div class="panel">
+			<h3>This is a panel</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque consequatur corporis doloremque eaque,
+				error facilis incidunt ipsam iste iure magni, officia sit tempora vel, velit? Cumque earum eveniet, iure
+				libero odio porro provident tenetur!</p>
+		</div>
 	</section>
 </Layout>
