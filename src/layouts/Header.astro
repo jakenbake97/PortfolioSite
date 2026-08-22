@@ -3,13 +3,14 @@
 import Nav from "@/components/Nav.astro";
 import Button from "@/components/Button.astro";
 
-import logo from "@/assets/HWG_logo.png";
+import Logo from "@/assets/HWG_logo.png";
 import GitHub from "@assets/github/GitHub_Invertocat_White.svg"
+import Image from "astro/components/Image.astro";
 ---
 <header class="site-header">
     <div class="site-header-inner">
         <a href="/" class="header-logo" aria-label="Jake Pigg home">
-            <img src={logo.src} alt="HWG logo" class="header-logo-image"/>
+            <Image src={Logo} alt="HWG logo" loading="eager" class="header-logo-image"/>
             <span class="header-logo-text">Jake Pigg</span>
         </a>
 

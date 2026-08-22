@@ -1,9 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
 import Button from "@/components/Button.astro";
+import Hero from "@/components/Hero.astro";
 
 import GitHub from "@assets/github/GitHub_Invertocat_White.svg"
-import Hero from "@/components/Hero.astro";
+import ProjectGrid from "@/components/ProjectGrid.astro";
 ---
 
 <Layout>
@@ -40,6 +41,8 @@ import Hero from "@/components/Hero.astro";
 			aut debitis deserunt eius est, hic labore natus nisi, perferendis recusandae rerum soluta tenetur
 			voluptatibus!</p>
 	</section>
+	<hr/>
+	<ProjectGrid/>
 	<section class="section">
 		<Button href="/" variant="primary">Primary button</Button>
 		<Button href="/" variant="secondary">Secondary button</Button>
