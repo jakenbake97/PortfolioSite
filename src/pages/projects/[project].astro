@@ -1,0 +1,55 @@
+---
+import {getCollection, render} from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Image from "astro/components/Image.astro";
+import Button from "@/components/Button.astro";
+import GitHub from "@assets/github/GitHub_Invertocat_White.svg"
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map(project => ({
+        params: {project: project.data.slug},
+        props: {project, projects}
+    }));
+}
+
+const {project, projects} = Astro.props;
+const {Content} = await render(project);
+const {title, description, thumbnail, chips, link} = project.data;
+---
+<Layout title={project.data.title} description={project.data.description}>
+    <section class="project-banner">
+        <Image class="project-banner-image" src={thumbnail} alt="" loading="eager" />
+        <div class="project-banner-content">
+            <h1 class="project-banner-title">{title}</h1>
+            <p class="project-banner-description">{description}</p>
+            <div class="chip-list">
+                {chips.map(chip => (
+                    <span class="chip">{chip}</span>
+                ))}
+            </div>
+
+            {link && (
+                <Button href={link} variant="icon" target="_blank" rel="noopener noreferrer">
+                    <GitHub />
+                    View Repository
+                </Button>
+            )}
+        </div>
+    </section>
+    <div class="project-page">
+        <aside class="project-sidebar panel" aria-labelledby="project-sidebar-title">
+            <h2 id="project-sidebar-title" class="project-sidebar-title">My Projects</h2>
+            <ul class="project-sidebar-list">
+                {projects.map(currentProject => (
+                    <li class={currentProject.data.slug === project.data.slug ? "project-sidebar-item project-sidebar-item-active" : "project-sidebar-item"}>
+                        <a href={`/projects/${currentProject.data.slug}`}>{currentProject.data.title}</a>
+                    </li>
+                ))}
+            </ul>
+        </aside>
+        <article class="project-article">
+            <Content />
+        </article>
+    </div>
+</Layout>
