@@ -345,6 +345,10 @@ code {
     .header-actions {
         justify-self: center;
     }
+
+    .toc-minimap {
+        display: none;
+    }
 }
 
 footer {
@@ -652,6 +656,7 @@ footer {
 
 .project-page {
     display: grid;
+    position: relative;
     grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr);
     grid-template-areas: "sidebar article";
     gap: var(--space-5);
@@ -782,4 +787,90 @@ footer {
         min-height: 24rem;
         padding: var(--space-4);
     }
+}
+
+.toc-minimap {
+    position: sticky;
+    top: 6rem;
+    grid-area: article;
+    justify-self: end;
+    z-index: 2;
+    height: fit-content;
+    width: var(--space-6);
+    padding: var(--space-2) 0;
+    border-right: 2px solid var(--color-border);
+}
+
+.toc-minimap ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    align-items: flex-end;
+}
+
+.minimap-item {
+    position: relative;
+    display: block;
+    height: var(--space-3);
+    background-color: var(--color-border);
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    opacity: 0.5;
+    transition:
+            background-color 0.25s ease,
+            transform 0.25s ease;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+        background-color: var(--color-text-muted);
+        transform: scaleX(1.15);
+        opacity: 1;
+    }
+
+    &::after {
+        content: attr(data-heading);
+        position: absolute;
+        top: 50%;
+        right: calc(100% + var(--space-3));
+        translate: 0 -50%;
+        z-index: 3;
+        width: max-content;
+        max-width: 18rem;
+        padding: var(--space-2) var(--space-3);
+        border: var(--border);
+        border-radius: var(--radius-md);
+        background-color: var(--color-elevated);
+        color: var(--color-text);
+        box-shadow: var(--shadow-hover);
+        font-size: var(--text-sm);
+        line-height: 1.3;
+        white-space: normal;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateX(var(--space-2));
+        transition:
+                opacity 150ms ease,
+                transform 150ms ease;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.minimap-item-2 {
+    width: var(--space-6);
+}
+
+.minimap-item-3 {
+    width: var(--space-5);
+}
+
+.minimap-item-4 {
+    width: var(--space-4);
 }

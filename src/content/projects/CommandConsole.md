@@ -91,6 +91,8 @@ graph TD
 
 Use code with caution. Would you like:An example using IntersectionObserver to highlight the active heading in the minimap as the user scrolls?A guide on configuring rehype plugins to customize how Astro generates heading IDs and slugs?
 
+#### Mermaid Chart
+
 ```mermaid
 mindmap
   root((mindmap))

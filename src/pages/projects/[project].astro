@@ -14,8 +14,9 @@ export async function getStaticPaths() {
 }
 
 const {project, projects} = Astro.props;
-const {Content} = await render(project);
+const {Content, headings} = await render(project);
 const {title, description, thumbnail, chips, link} = project.data;
+const toc = headings.filter(item => item.depth <= 4);
 ---
 <Layout title={project.data.title} description={project.data.description}>
     <section class="project-banner">
@@ -38,6 +39,16 @@ const {title, description, thumbnail, chips, link} = project.data;
         </div>
     </section>
     <div class="project-page">
+        <nav class="toc-minimap">
+            <ul>
+                {toc.map(item => (
+                        <li>
+                            <a href={`#${item.slug}`} class=`minimap-item minimap-item-${item.depth}`
+                               aria-label={item.text} data-heading={item.text} title={item.text}></a>
+                        </li>
+                ))}
+            </ul>
+        </nav>
         <aside class="project-sidebar panel" aria-labelledby="project-sidebar-title">
             <h2 id="project-sidebar-title" class="project-sidebar-title">My Projects</h2>
             <ul class="project-sidebar-list">
