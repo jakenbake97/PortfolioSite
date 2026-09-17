@@ -1,115 +1,70 @@
 ---
 title: "Command Console"
-description: "A reflection-based command console used for game development in Godot."
+description: "A reflection-based command console and logging system for Godot projects."
 slug: "command-console"
-link: "https://github.com/CommandConsole/CommandConsole"
+link: "https://github.com/Half-Way-Games/GodotCommandConsole"
 thumbnail: "@assets/cardPlaceholder.jpg"
 chips: ["C#", "Godot"]
 ---
-## Header
+A reflection-based runtime command console and logging system for Godot projects, built to make development, playtesting, and debugging easier.
 
-This is some text in the article.
 
-## Features
+![ExampleCommandUsage.gif](../../assets/Command%20Console/ExampleCommandUsage.gif)
 
-- Reflection-based command handling
-- Easy to use and extend
-- Supports multiple platforms
-- Integrates seamlessly with Godot projects
 
-![HWG_logo.png](../../assets/HWG_logo.png)
+## Overview
+This command console addon is a reflection-based runtime development console and logging system for Godot projects, 
+built to make development, playtesting, and debugging easier. Commands are added by simply adding a static method to 
+a script and decorating it with the `[ConsoleCommand]` attribute. When the project starts, all commands are automatically 
+discovered and added to the console. The command attribute features optional parameters for specifying a prefix to 
+group commands and writing a description to provide context for the command.
 
-```csharp
-private static void ExecuteCommand(string command)
-{
-    if (command.isEmpty())
-        return;
-        
-   command.Run();
-}
-```
+As my game began to grow and there were more things to test, I needed a way to be able to set up specific conditions 
+easily. I also wanted an easy way for my friends, who were playtesting, to be able to edit various values in the builds 
+I sent them to find what felt right. Previously, they would need to have access to the project in Godot and know how 
+to tweak values in the inspector before they could run the game and test again. Inspired by a few other command 
+consoles I had seen in games or other Godot projects, I decided to create my own version.
 
-![cardPlaceholder.jpg](../../assets/cardPlaceholder.jpg)
+With this console in place and some commands on the player to tweak individual settings, I was able to quickly find 
+values that would make the character controller feel right. A playtester could fine-tune whatever setting they found 
+was off until they found something that felt right. For example, if the jump was too high, they could run the 
+command `Player.SetJumpHeight 2.5` to adjust the jump height, test again, and continue to tweak until they found a 
+value that felt right. Without ever having to close the game, find the setting in the inspector to change, and then 
+rebuild and play again.
 
-To create a table of contents or page minimap from Markdown headings in Astro, you can extract the heading array using Astro's built-in `getHeadings()` function (for direct imports) or the `headings` property (in layouts or content collections).
-1. **Query or import the Markdown data** to access the `headings` list containing `depth`, `slug`, and `text` properties.
-2. **Pass or iterate over the headings array** in your Astro component or layout to render a structured list.
-3. **Map the heading depths** (`depth: 1` through `6`) to indentation classes and link each item to its generated anchor `slug` (`#slug`).
+The tool is broken down into a handful of different components. 
+- DevConsoleUI: handles the display, input of commands, showing of suggestions, and filtering of logs. 
+- DevConsole: registers all the commands in the project and handles their execution by converting parsed argument inputs into their data types. 
+- ConsoleInputParser: quote-aware parser responsible for splitting the input into a command and its individual arguments.
+- DevConsoleLogger: handles logs throughout the project and formatting them as Log Entries with timestamps and caller info.
+- ConsoleAutocomplete: takes parsed and partial input to fuzzy search commands and provides suggestions based on their scores against the input.
 
-Here is an example implementation inside an Astro layout or page using content collections / direct rendering:astro
+The goal of the console's design is not only to make it easier to find information and invoke commands at runtime, 
+but also to make it easier for developers to use when writing code. As mentioned above, registering a command is as 
+easy as decorating a static method with the `[ConsoleCommand]` attribute, and logging is as simple as calling the 
+logger and specifying a log level `Log.Info(string message)`.
 
-![Portrait_Placeholder.png](../../assets/Portrait_Placeholder.png)
+## Goals
+What did I want to accomplish?
 
-### Callouts
+## Architecture
+How is it structured?
 
-> [!note]
-> This is a useful piece of information that users should notice.
-> It can span multiple lines
->
-> This one even has a gap above
+## Implementation
+How did the important pieces work?
 
-> [!WARNING]- 
-> this is some important info here
+## Challenges
+What was difficult?
 
-> [!tip]
-> This is a tip
+## Design Decisions
+What I chose this approach?
 
-> [!important]-
-> This is an important callout
+## Developer/User Experience
+Why did I make it pleasant to use?
 
-> [!caution]
-> This is a caution
+## Results
+The resulting plugin made it incredibly easy and straightforward to add new commands for testing various aspects of my game.
+With a simple attribute tag on a static method, I can have a new command to use in my games.
 
-```astro
----
-// Example: Accessing headings from a rendered content collection entry or import
-const { headings } = Astro.props;
----
-<nav class="minimap">
-  <h2>On this page</h2>
-  <ul>
-    {headings.map((heading) => (
-      <li class={`depth-${heading.depth}`}>
-        <a href={`#${heading.slug}`}>{heading.text}</a>
-      </li>
-    ))}
-  </ul>
-</nav>
+## Future Improvements
 
-<style>
-  .depth-2 { margin-left: 1rem; }
-  .depth-3 { margin-left: 2rem; }
-  /* Add further styling for your visual minimap/sidebar */
-</style>
-```
-### Charts
-
-```mermaid w-400 h-200 title="Deployment Overview" align=center
-graph TD
-    A[Start] --> B[Deploy] --> C[Done]
-```
-
-Use code with caution. Would you like:An example using IntersectionObserver to highlight the active heading in the minimap as the user scrolls?A guide on configuring rehype plugins to customize how Astro generates heading IDs and slugs?
-
-#### Mermaid Chart
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-
-```

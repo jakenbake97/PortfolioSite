@@ -720,8 +720,8 @@ footer {
 }
 
 .project-article img {
-    max-width: min(100%, 25rem);
-    max-height: 25rem;
+    max-width: min(100%, 38rem);
+    max-height: 32rem;
     width: auto;
     height: auto;
     border-radius: var(--radius-md);
@@ -818,6 +818,7 @@ footer {
     background-color: var(--color-border);
     border-radius: var(--radius-sm) 0 0 var(--radius-sm);
     opacity: 0.5;
+    box-shadow: var(--shadow);
     transition:
             background-color 0.25s ease,
             transform 0.25s ease;
