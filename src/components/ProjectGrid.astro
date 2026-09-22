@@ -2,7 +2,7 @@
 import ProjectCard from "@/components/ProjectCard.astro";
 import {getCollection} from "astro:content";
 
-const projects = await getCollection("projects");
+const projects = await getCollection("projects", project => !project.data.draft);
 ---
 
 <section class="section">

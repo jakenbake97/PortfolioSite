@@ -1,0 +1,17 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Button from "@/components/Button.astro";
+import Image from "astro/components/Image.astro";
+
+import Background from "@assets/code.jpg";
+---
+<Layout title="Page Not Found">
+    <section class="hero">
+        <Image class="hero-background" src={Background} alt="" loading="eager"/>
+        <div class="hero-content">
+            <h1 class="hero-title">404</h1>
+            <p class="hero-description">The page you're looking for does not exist.</p>
+            <Button href="/" variant="primary" style="margin-top: var(--space-4)">Return Home</Button>
+        </div>
+    </section>
+</Layout>

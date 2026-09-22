@@ -3,13 +3,14 @@ import Image from "astro/components/Image.astro";
 
 import Profile from "@assets/Portrait_Placeholder.png";
 import Background from "@assets/code.jpg";
+
 ---
-<section class="hero section">
+<section class="hero">
     <Image class="hero-background" src={Background} alt="" loading="eager"/>
     <div class="hero-content">
         <span class="hero-eyebrow">TOOLS • GAMES • SYSTEMS</span>
-        <Image class="hero-image" src={Profile} alt="Jake Pigg" loading="eager" />
-        <h1 class="hero-title">Hi, I'm Jake</h1>
+        <Image class="hero-image" src={Profile} alt="Profile Picture" loading="eager" />
+        <h1 class="hero-title">Jake Pigg</h1>
         <p class="hero-description">Software engineer and game developer building practical tools to reduce friction.</p>
     </div>
 </section>

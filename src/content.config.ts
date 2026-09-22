@@ -11,6 +11,7 @@ const projects = defineCollection({
         thumbnail: image(),
         chips: z.array(z.string()),
         link: z.url().optional(),
+        draft: z.boolean().optional()
     })
 });
 

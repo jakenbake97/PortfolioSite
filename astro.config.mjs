@@ -8,7 +8,7 @@ import satteriCallouts from "satteri-callouts";
 
 // https://astro.build/config
 export default defineConfig({
-  markdown: {
+    markdown: {
       shikiConfig: {
           theme: 'dark-plus'
       },
@@ -21,15 +21,19 @@ export default defineConfig({
               theme: 'obsidian',
           })],
       })
-  },
-  integrations: [mermaidSatteri({
+    },
+    integrations: [mermaidSatteri({
       theme: 'neutral',
       autoTheme: false,
       themeVariables: {
           fontSize: 'var(--text-sm)',
           fontFamily: 'var(--font-mono)'
       }
-  })]
+  })],
+    redirects: {
+        '/projects': '/#projects',
+        '/past-work': '/#past-work',
+    }
 });
 
 // export default defineConfig({
