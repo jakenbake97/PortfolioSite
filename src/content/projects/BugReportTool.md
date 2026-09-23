@@ -2,9 +2,9 @@
 title: "Bug Report Tool"
 description: "A tool for reporting bugs in Godot games and a dedicated bug viewer and notification automation."
 slug: "bug-report-tool"
-link: "https://github.com/Half-wayGames/BugReportTool"
+link: "https://github.com/Half-Way-Games/Bug-Report-Tool"
 thumbnail: "@assets/code.jpg"
-chips: ["C#", "Godot", "Node.js", "React", "Discord"]
+chips: ["C#", "Godot", "Node.js", "React", "N8N", "Discord"]
 ---
 
 The bug report tool can be thought of as two parts: the in game tool that collects information from the user and the 

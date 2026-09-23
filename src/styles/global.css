@@ -159,6 +159,7 @@ hr {
     border: none;
     height: 2px;
     background-color: var(--color-elevated);
+    margin-block: var(--space-2);
 }
 
 pre {
@@ -649,6 +650,44 @@ footer {
     font-size: var(--text-lg);
 }
 
+.about-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+}
+
+.about-left {
+    flex-basis: 45ch;
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-self: start;
+    max-width: 75ch;
+
+    &> * + * {
+        margin-top: var(--space-4);
+    }
+}
+
+.about-right {
+    flex-basis: 10rem;
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-self: center;
+
+
+    display: flex;
+    justify-content: center;
+}
+
+.about-logo {
+    min-width: 10rem;
+    max-width: 18.75rem;
+    height: auto;
+}
+
 .project-header {
     padding-block: var(--space-4);
 }
@@ -677,7 +716,6 @@ footer {
 
 .project-sidebar-list {
     display: grid;
-    gap: var(--space-2);
     padding: 0;
     list-style: none;
 }

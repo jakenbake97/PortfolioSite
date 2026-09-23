@@ -1,0 +1,24 @@
+---
+import Image from "astro/components/Image.astro"
+import type {CollectionEntry} from "astro:content";
+
+type Props = {
+    project: CollectionEntry<"pastWork">;
+}
+
+const {project} = Astro.props;
+const {title, description, thumbnail, slug, chips} = project.data;
+---
+<article class="card">
+    <a class="card-link" href=`/past-work/${slug}`>
+    <Image class="card-image" src={thumbnail} alt="" loading="lazy"/>
+    <div class="card-content">
+        <h3 class="card-title">{title}</h3>
+        <p class="card-description">{description}</p>
+        <div class="chip-list">
+            {chips.map(chip => <span class="chip">{chip}</span>)}
+        </div>
+        <span class="card-view">View Project --></span>
+    </div>
+    </a>
+</article>

@@ -1,0 +1,25 @@
+---
+import Image from "astro/components/Image.astro";
+
+import Logo from "@assets/HWG_logo_White.png"
+---
+<section class="section">
+    <div class="about-section">
+        <div class="about-left">
+            <h2 class="section-title">Hi, I'm Jake</h2>
+            <p>I'm a programmer and game developer who has found a love for building tools. I enjoy getting to create
+                something that can reduce friction in a workflow. Whether that's a developer tool, an automated pipeline, or a
+                system to make it easier to get work done. </p>
+
+            <p>Most of my projects arise naturally out of what I'm working on. I find something that could work better or
+                is frustrating, and want to build the thing that fixes it. In my spare time, I make indie games and
+                development tools under the name Half-Way Games.</p>
+            <p>Game development gives me a place to explore
+                larger systems and varied creative problems, while my tooling projects serve a focused, useful software to
+                alleviate pain points or make a process easier for the user. </p>
+        </div>
+        <div class="about-right">
+            <Image class="about-logo" src={Logo} alt="Half-Way Games logo" loading="lazy" class="about-logo" width={300}/>
+        </div>
+    </div>
+</section>

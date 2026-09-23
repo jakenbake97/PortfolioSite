@@ -5,7 +5,7 @@ import {getCollection} from "astro:content";
 const projects = await getCollection("projects", project => !project.data.draft);
 ---
 
-<section class="section">
+<section class="section" id="projects">
     <h2 class="section-title">My Projects</h2>
     <div class="project-grid">
         {projects.map(project => <ProjectCard project={project} />)}

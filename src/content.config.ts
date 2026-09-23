@@ -15,4 +15,15 @@ const projects = defineCollection({
     })
 });
 
-export const collections = { projects };
+const pastWork = defineCollection({
+    loader: glob({pattern: "src/content/past-work/**/*.md"}),
+    schema: ({image}) => z.object({
+        title: z.string(),
+        description: z.string(),
+        slug: z.string(),
+        thumbnail: image(),
+        chips: z.array(z.string())
+    })
+});
+
+export const collections = { projects, pastWork };

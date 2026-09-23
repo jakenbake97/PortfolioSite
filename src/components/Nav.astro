@@ -2,15 +2,15 @@
 const currentPath = Astro.url.pathname;
 
 const navData = [
-	{ label: "Home", href: "/" },
-	{ label: "Projects", href: "/projects" },
-	{ label: "Contact", href: "/contact" },
+	{ label: "Home", href: "/", path: "/" },
+	{ label: "Projects", href: "/#projects", path: "/projects" },
+	{ label: "Past Work", href: "/#past-work", path: "/past-work" },
 ];
 ---
 <nav class="site-nav" aria-label="Main navigation">
     <ul class="site-nav-list">
         {navData.map((item) => {
-            const isActive = item.href === "/" ? currentPath === "/" : currentPath.startsWith(item.href);
+            const isActive = item.href === "/" ? currentPath === "/" : currentPath.startsWith(item.path);
             return (
                     <li><a href={item.href}
                            class:list={["site-nav-link", isActive ? "site-nav-link--active" : ""]}

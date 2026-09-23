@@ -1,0 +1,29 @@
+---
+import {getCollection} from "astro:content";
+type Props = {
+    current: string
+}
+
+const projects = await getCollection("projects",project => !project.data.draft);
+const pastWorks = await getCollection("pastWork");
+const {current} = Astro.props;
+---
+<aside class="project-sidebar panel" aria-labelledby="project-sidebar-title">
+    <h2 id="project-sidebar-title" class="project-sidebar-title">My Projects</h2>
+    <ul class="project-sidebar-list">
+        {projects.map(currentProject => (
+                <li class={currentProject.data.slug === current ? "project-sidebar-item project-sidebar-item-active" : "project-sidebar-item"}>
+                    <a href={`/projects/${currentProject.data.slug}`}>{currentProject.data.title}</a>
+                </li>
+        ))}
+    </ul>
+    <hr />
+    <h2 class="project-sidebar-title">Past Work</h2>
+    <ul class="project-sidebar-list">
+        {pastWorks.map(currentProject => (
+                <li class={currentProject.data.slug === current ? "project-sidebar-item project-sidebar-item-active" : "project-sidebar-item"}>
+                    <a href={`/past-work/${currentProject.data.slug}`}>{currentProject.data.title}</a>
+                </li>
+        ))}
+    </ul>
+</aside>

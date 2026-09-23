@@ -1,61 +1,17 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Button from "@/components/Button.astro";
 import Hero from "@/components/Hero.astro";
 
-import GitHub from "@assets/github/GitHub_Invertocat_White.svg"
 import ProjectGrid from "@/components/ProjectGrid.astro";
+import PastWorkGrid from "@/components/PastWorkGrid.astro";
+import About from "@/components/About.astro";
 ---
 
 <Layout title="Home">
 	<Hero />
-	<section class="section">
-		<h1>Hello</h1>
-		<p>This is some text.</p>
-		<ul>
-			<li>One</li>
-			<li>Two</li>
-		</ul>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dolores facere perferendis praesentium
-			quod repellendus tempora, vel veritatis! Accusantium autem facere hic, iusto magnam provident repellendus
-			sequi soluta suscipit vero.</p>
-		<p>Accusamus accusantium distinctio ipsa reiciendis tempora ut? Architecto dolorem eligendi et, eum id tempore.
-			Animi, delectus deserunt earum est fugiat inventore ipsam iusto nemo nisi officia officiis, praesentium
-			tenetur ut.</p>
-		<p>Ad amet officia rem! Adipisci amet animi blanditiis deleniti eum explicabo facilis, ipsam ipsum iure labore
-			minima minus molestiae, neque nostrum nulla, officiis perferendis quis quod rerum similique velit
-			voluptatem.</p>
-		<p>Ad architecto deserunt esse excepturi illo nobis nulla optio provident repudiandae sunt tempore, vero. Alias,
-			aut debitis deserunt eius est, hic labore natus nisi, perferendis recusandae rerum soluta tenetur
-			voluptatibus!</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dolores facere perferendis praesentium
-			quod repellendus tempora, vel veritatis! Accusantium autem facere hic, iusto magnam provident repellendus
-			sequi soluta suscipit vero.</p>
-		<p>Accusamus accusantium distinctio ipsa reiciendis tempora ut? Architecto dolorem eligendi et, eum id tempore.
-			Animi, delectus deserunt earum est fugiat inventore ipsam iusto nemo nisi officia officiis, praesentium
-			tenetur ut.</p>
-		<p>Ad amet officia rem! Adipisci amet animi blanditiis deleniti eum explicabo facilis, ipsam ipsum iure labore
-			minima minus molestiae, neque nostrum nulla, officiis perferendis quis quod rerum similique velit
-			voluptatem.</p>
-		<p>Ad architecto deserunt esse excepturi illo nobis nulla optio provident repudiandae sunt tempore, vero. Alias,
-			aut debitis deserunt eius est, hic labore natus nisi, perferendis recusandae rerum soluta tenetur
-			voluptatibus!</p>
-	</section>
+	<About/>
 	<hr/>
 	<ProjectGrid/>
-	<section class="section">
-		<Button href="/" variant="primary">Primary button</Button>
-		<Button href="/" variant="secondary">Secondary button</Button>
-		<Button href="/" variant="accent">Accent button</Button>
-		<Button href="/" variant="icon" target="_blank" rel="noopener noreferrer"><GitHub/>Icon Button</Button>
-		<Button href="/" variant="icon-only" target="_blank" rel="noopener noreferrer" aria-label="GitHub link"><GitHub/></Button>
-	</section>
-	<section class="section">
-		<div class="panel">
-			<h3>This is a panel</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque consequatur corporis doloremque eaque,
-				error facilis incidunt ipsam iste iure magni, officia sit tempora vel, velit? Cumque earum eveniet, iure
-				libero odio porro provident tenetur!</p>
-		</div>
-	</section>
+	<hr />
+	<PastWorkGrid/>
 </Layout>

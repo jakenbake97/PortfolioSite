@@ -2,24 +2,22 @@
 import {getCollection, render} from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Image from "astro/components/Image.astro";
-import Button from "@/components/Button.astro";
-import GitHub from "@assets/github/GitHub_Invertocat_White.svg"
 import Sidebar from "@/components/Sidebar.astro";
 
 export async function getStaticPaths() {
-    const projects = await getCollection("projects",project => !project.data.draft);
-    return projects.map(project => ({
-        params: {project: project.data.slug},
-        props: {project, projects}
+    const pastWorks = await getCollection("pastWork");
+    return pastWorks.map(work => ({
+        params: {work: work.data.slug},
+        props: {work, pastWorks}
     }));
 }
 
-const {project, projects} = Astro.props;
-const {Content, headings} = await render(project);
-const {title, description, thumbnail, chips, link, slug} = project.data;
+const {work, pastWorks} = Astro.props;
+const {Content, headings} = await render(work);
+const {title, description, thumbnail, chips, slug} = work.data;
 const toc = headings.filter(item => item.depth <= 4);
 ---
-<Layout title={project.data.title} description={project.data.description}>
+<Layout title={title} description={description}>
     <section class="project-banner">
         <Image class="project-banner-image" src={thumbnail} alt="" loading="eager" />
         <div class="project-banner-content">
@@ -30,13 +28,6 @@ const toc = headings.filter(item => item.depth <= 4);
                     <span class="chip">{chip}</span>
                 ))}
             </div>
-
-            {link && (
-                <Button href={link} variant="icon" target="_blank" rel="noopener noreferrer">
-                    <GitHub />
-                    View Repository
-                </Button>
-            )}
         </div>
     </section>
     <div class="project-page">

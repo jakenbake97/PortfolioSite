@@ -1,0 +1,13 @@
+---
+import {getCollection} from "astro:content";
+import PastWorkCard from "@/components/PastWorkCard.astro";
+
+const pastWorks = await getCollection("pastWork");
+---
+
+<section class="section" id="past-work">
+    <h2 class="section-title">Past Work</h2>
+    <div class="project-grid">
+        {pastWorks.map(project => <PastWorkCard project={project} />)}
+    </div>
+</section>
