@@ -592,6 +592,11 @@ footer {
     margin-left: -2px;
 }
 
+.image-caption {
+    display: block;
+    text-align: center;
+}
+
 /* Page Specific */
 .hero {
     isolation: isolate;
