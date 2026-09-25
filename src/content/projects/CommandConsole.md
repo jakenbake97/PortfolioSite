@@ -55,7 +55,7 @@ easy as decorating a static method with the `[ConsoleCommand]` attribute, and lo
 logger and specifying a log level `Log.Info(string message)`.
 
 
-## Learnings
+## What I Learned
 Building this tool allowed me to learn how to implement fuzzy search and score results, which was a fun challenge. 
 I also learned some basics of reflection in C#, which for a use case like this, where I'm gathering methods 
 decorated with an attribute, is easier than I expected. I chose to use reflection for command registration because I 

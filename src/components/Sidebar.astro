@@ -5,7 +5,7 @@ type Props = {
 }
 
 const projects = await getCollection("projects",project => !project.data.draft);
-const pastWorks = await getCollection("pastWork");
+const pastWorks = await getCollection("pastWork", work => !work.data.draft);
 const {current} = Astro.props;
 ---
 <aside class="project-sidebar panel" aria-labelledby="project-sidebar-title">

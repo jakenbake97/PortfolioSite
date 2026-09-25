@@ -22,7 +22,8 @@ const pastWork = defineCollection({
         description: z.string(),
         slug: z.string(),
         thumbnail: image(),
-        chips: z.array(z.string())
+        chips: z.array(z.string()),
+        draft: z.boolean().optional()
     })
 });
 
