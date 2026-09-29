@@ -15,8 +15,8 @@ I wanted a way to make it easier for my friends to be able to review and give me
 for my game. Instead of requiring them to download the files and then also have the various software, such as 
 Blender and Cascadeur, installed and up to date, I instead wanted to make it as simple as possible for them to 
 review assets. It was challenging to get anyone to take the time to review things when it required work on their part. 
-We already used discord to talk to each other and for game-related discussions, so I wanted to build a tool that 
-would eliminate the friction for reviewing assets and integrate into Discord. With a single click to launch the 
+We already used Discord to talk to each other and for game-related discussions, so I wanted to build a tool that 
+would eliminate the friction for reviewing assets and integrate into the platform. With a single click to launch the 
 activity, a review could be started.
 
 ## Architecture
@@ -33,13 +33,13 @@ Docker Compose
 <small class="image-caption">Discord Activty for reviewing the One-Handed Shortsword Animation Pack</small>
 
 The Discord Activity is a small Godot web app viewer that Discord runs in the application as an iframe. The Godot app 
-handles communicating with the Discord bot to authenticate the user and then to proxy the request to load the asset 
+handles communicating with the Discord bot to authenticate the user and also to proxy the request to load the asset 
 files to the asset API. The Godot viewer has a simple orbit camera for easier viewing of the asset and a timeline for 
-scrubbing through animations. 
+scrubbing through animations and playback. 
 
 The Discord bot is the only public-facing service in the stack. The Godot Activity handles the client-side 
 presentation while the bot handles authentication, review messages, and communication with the Asset API. The bot makes 
-posts to a dedicated channel in Discord that contain the name of the asset to review, the link to launch the activity, 
+posts to a dedicated channel in Discord, containing the name of the asset to review, the link to launch the activity, 
 and then approval and rejection buttons. It also automatically creates a thread on that message for easy communication 
 and feedback from reviewers.
 
@@ -53,14 +53,14 @@ that specific asset's embed. As users approve or reject, the results are collect
 <small class="image-caption">Review notification that has been voted on and expired</small>
 
 Because the asset files aren't intended to be publicly accessible, the viewer needed a way to prove that a request 
-came from an authenticated Discord user. I used Discord OAuth2 to authenticate the activity with the bot and Discord,
-and then issued a short-lived JSON Web Token that the activity could use when requesting an asset from the Asset API.
-The API validates the token before serving the requested file.
+came from an authenticated Discord user. I used Discord OAuth2 to authenticate the activity with the bot and 
+Discord's servers, and then issued a short-lived JSON Web Token that the activity could use when requesting an asset 
+from the Asset API. The API validates the token before serving the requested file.
 
 There can be multiple active reviews at a time, so the bot uses Discord's user info to track the message they interacted 
 with and store the recent interaction. This is done so that when the activity authenticates with the bot, it can 
 get the asset hash that this user last interacted with and inject that into the Godot viewer. Then, once the 
-Godot viewer has started and is ready to load an asset, it grabs that asset hash and makes the request which is 
+Godot viewer has started and is ready to load an asset, it grabs that asset hash and makes the request, which is 
 proxied to the Asset API to get the correct asset file.
 
 ### Asset API
@@ -71,9 +71,9 @@ to serve back to the Godot viewer.
 ### Asset Watcher
 The asset watcher is the container that watches a specific review directory, waiting to respond to file events. 
 Rather than exposing the filesystem path of an asset, the watcher generates a hash that acts as its identifier. The 
-hash is passed through the review workflow and ultimately used by the API to determine which asset should be server. 
-After detecting a new asset, the watcher notifies the bot, which then sends the review message and embed in the Discord 
-Channel.
+hash is passed through the review workflow and ultimately used by the API to determine which asset should be served. 
+After detecting a new asset, the watcher notifies the bot, which then sends the review message and the embed in the 
+Discord Channel.
 
 ## Review Workflow
 ```mermaid
@@ -91,7 +91,7 @@ flowchart LR
 ```
 1. A .glb file is added to the review directory
 2. The asset watcher detects the file, generates a hash, and notifies the Discord bot
-3. The discord bot posts a message to the discord channel
+3. The Discord bot posts a message to the Discord channel
 4. A user clicks to review the asset, which launches the Godot Discord Activity
 5. The Activity authenticates with the bot and injects the hash into the viewer
 6. The Viewer can then request the asset from the Asset API with a request that is proxied through the bot.
@@ -107,9 +107,9 @@ and what information should be shared between them.
 
 ## Results
 This tool was incredibly effective in getting regular reviews on assets from my friends. It took all the friction 
-out of reviewing that we had before. Previously I would have to upload files to discord or a file sharing service 
+out of reviewing that we had before. Previously, I would have to upload files to Discord or a file-sharing service 
 and then try to get someone to download them and open them in Blender. Now, I could just drop a file into the 
-directory on my server, and the rest was done automatically. Then with just a click of the "Launch Review Tool" 
+directory on my server, and the rest was done automatically. Then, with just a click of the "Launch Review Tool" 
 button, a review could be performed with no effort from the user. It went from asking for feedback repeatedly to 
 getting it just a few minutes after dropping the file from anyone who was online at the time, with more coming in 
 later in the day.
@@ -117,10 +117,11 @@ later in the day.
 ## Future Improvements
 As I mentioned above, this was the first multi-container stack I built, and it was a learning experience on how to 
 structure these types of systems. With what I've learned since building it, I would simplify the deployment and 
-consolidate some services rather than maintaining three separate containers. I think logically it could be 
-consolidated to a container for Discord (Activity and Bot) and then a backend (API and Watcher).
+consolidate some services rather than maintaining three separate containers. I think the easiest approach would be 
+to combine the watcher and API, then there would be a container for Discord (Activity and Bot) and an "internal" 
+container on the server (Watcher and API).
 
 The Godot Viewer could use some additional features, such as camera snapping, and some built-in assets that can be 
-loaded in for viewing with the animations that are being reviewed. For example, being able to load a sword model 
-with the shortsword animations would be helpful for reviewing the weapon bones are also animated correctly, not just 
-the character armature.
+loaded for viewing with the animations that are being reviewed. For example, being able to load a sword model 
+with the shortsword animations would be helpful for reviewing whether the weapon bones are also animated correctly, not 
+just the character armature.
