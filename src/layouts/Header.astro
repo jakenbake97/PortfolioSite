@@ -17,11 +17,13 @@ import Image from "astro/components/Image.astro";
         <Nav />
 
         <div class="header-actions" aria-label="Profile links">
-            <Button href="https://github.com/jakenbake97" variant="icon">
+            <Button href="https://github.com/jakenbake97" variant="icon" target="_blank" rel="noopener noreferrer">
                 <GitHub />
                 GitHub
             </Button>
-            <Button href="#" variant="accent">Resume</Button>
+            <Button href="http://localhost:4321/JakePiggResume.pdf" variant="accent" target="_blank" rel="noopener noreferrer">
+                Resume
+            </Button>
         </div>
     </div>
 </header>
