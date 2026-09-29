@@ -4,8 +4,6 @@ import {satteri} from "@astrojs/markdown-satteri";
 import mermaidSatteri from 'astro-mermaid-satteri';
 import satteriCallouts from "satteri-callouts";
 
-// import cloudflare from '@astrojs/cloudflare';
-
 // https://astro.build/config
 export default defineConfig({
     markdown: {
@@ -35,13 +33,3 @@ export default defineConfig({
         '/past-work': '/#past-work',
     }
 });
-
-// export default defineConfig({
-//   adapter: cloudflare({
-//     platformProxy: {
-//       enabled: true
-//     },
-//
-//     imageService: "cloudflare"
-//   })
-// });
